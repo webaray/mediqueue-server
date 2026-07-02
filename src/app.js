@@ -14,16 +14,16 @@ import { getMyBookings } from "./controllers/booking.controller.js";
 const app = express();
 
 // ✅ CORS fix
+
 const allowedOrigins = [
   "http://localhost:3000",
-  "http://localhost:3001",
+  "https://client-dusky-mu.vercel.app",
   process.env.CLIENT_URL
 ].filter(Boolean);
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (mobile apps, curl, Postman)
       if (!origin) return callback(null, true);
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
@@ -33,6 +33,7 @@ app.use(
     credentials: true
   })
 );
+
 
 app.use(express.json());
 app.use(cookieParser());
